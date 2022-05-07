@@ -67,7 +67,7 @@
 
 
     <label class="switch">
-        <input type="checkbox" id="togBtn">
+        <input type="checkbox" id="togBtn" checked="true">
         <div class="slider round"></div>
         </label>
 
@@ -170,14 +170,7 @@ function FirebaseFUNCTION(txt){
 
 
 
-        mainContentStoreFunction(txt);
-        var audio = new Audio('dot.mp3');
-        audio.play();
-
-
         RetriveLoginandLogoutCOunt();
-
-
 
 
         var isChecked=document.getElementById("togBtn").checked;
@@ -187,11 +180,17 @@ function FirebaseFUNCTION(txt){
             //If Logout
 
             tempContentStoreFunction(txt);
+            mainContentStoreFunction(txt,"Login");
+            var audio = new Audio('dot.mp3');
+            audio.play();
 
         }
 
         if(!isChecked){
             ExistingDataCheck(txt);
+            mainContentStoreFunction(txt,"Logout");
+            var audio = new Audio('dot.mp3');
+            audio.play();
         }
 
 
@@ -233,7 +232,7 @@ function RetriveLoginandLogoutCOunt(){
 
 }
 
-function mainContentStoreFunction(string) {
+function mainContentStoreFunction(string,data_state) {
 
 
   // Main Content Store
@@ -247,6 +246,7 @@ function mainContentStoreFunction(string) {
             newMessageRef.set({
                 name: string,
                 time: time_now,
+                state: data_state,
             });
 
 
