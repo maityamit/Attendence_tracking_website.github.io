@@ -50,6 +50,7 @@
     <div class="Hello_Center">
 
     <button onclick="ExportToExcel('xlsx')" class="hello_button">Export</button>
+    <button id="delete_all_data_button">Delete All</button>
 
 
 </div>
@@ -108,10 +109,29 @@
 
 
 
+    document.getElementById("delete_all_data_button").onclick = ALlDeelete;
+
+    function ALlDeelete(){
+
+
+alert("Delete all the Data");
+
+var _messagesRef3 = firebase.database()
+    .ref('Collected_Data');
+
+    _messagesRef3.remove();
+    location.reload();
+
+
+
+
+}
+
+
  
 
     var stdNo = 0;
-    function addItemList(time,result){
+    function addItemList(time,result,userKey){
 
 
 
@@ -119,8 +139,21 @@
   var row = table.insertRow(0);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
   cell1.innerHTML = time;
   cell2.innerHTML = result;
+  cell3.innerHTML = "<span style='color: red;'><u>Delete</u></span>";
+
+  cell3.onclick = function () {
+    var _messagesRef = firebase.database()
+            .ref('Collected_Data');
+            _messagesRef.child(userKey).remove();
+            location.reload();
+
+
+        };
+
+
 
 
     }
@@ -140,10 +173,11 @@
 
               snapshot.forEach(
                   function(ChildSnapshot){
+                     var userKey = ChildSnapshot.key;
                      let namee = ChildSnapshot.val().name;
                      let timee = ChildSnapshot.val().time;
 
-                     addItemList(timee,namee);
+                     addItemList(timee,namee,userKey);
 
                   }
               );
