@@ -177,12 +177,56 @@ function FirebaseFUNCTION(txt){
 
         if(isChecked){
 
+
+
+
+            var _messagesRef = firebase.database()
+            .ref('Temp_Data');
+var _byDefault = firebase.database()
+            .ref('ByDefault');
+
+
+
+  _messagesRef.once("value")
+  .then(function(snapshot) {
+
+    var hello = snapshot.numChildren();
+
+
+
+    _byDefault.once("value")
+    .then(function(snapshotamit){
+        var hello2 = snapshotamit.numChildren();
+
+
+
+
+        if(hello2>hello){
+            
+
+            
             //If Logout
 
             tempContentStoreFunction(txt);
             mainContentStoreFunction(txt,"Login");
             var audio = new Audio('dot.mp3');
             audio.play();
+
+
+
+
+        }else{
+            alert("Not Possible");
+        }
+
+
+
+
+    })
+
+
+  });
+
 
         }
 
@@ -281,11 +325,6 @@ var _byDefault = firebase.database()
 
 
 
-        if(hello2>hello){
-            
-
-
-
             var _newMessageRef = _messagesRef.push();
           _newMessageRef.set({
               result: string,
@@ -305,10 +344,6 @@ var _attendence = firebase.database().ref('Attendence');
 
 
 
-
-        }else{
-            alert("Not Possible");
-        }
 
 
 
