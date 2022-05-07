@@ -71,8 +71,10 @@
         <div class="slider round"></div>
         </label>
 
-    <h4 id="login_text">Number of Login : 7</h4>
-    <h4 id="logout_text">Number of Logout : 4</h4>
+
+    <h4 id="current_text">Current Visitors : </h4>
+    <h6 id="login_text">Number of Login : </h6>
+    <h6 id="logout_text">Number of Logout : </h6>
 
 
 
@@ -173,6 +175,8 @@ function FirebaseFUNCTION(txt){
         audio.play();
 
 
+        RetriveLoginandLogoutCOunt();
+
 
 
 
@@ -217,6 +221,8 @@ function RetriveLoginandLogoutCOunt(){
   .then(function(snapshotasim) {
 
     document.getElementById("logout_text").innerHTML = "Number of Logout : "+(snapshot.numChildren()-snapshotasim.numChildren());
+    document.getElementById("current_text").innerHTML = "Current Users : "+snapshotasim.numChildren();
+
 
   });
 
@@ -243,6 +249,8 @@ function mainContentStoreFunction(string) {
                 time: time_now,
             });
 
+
+            RetriveLoginandLogoutCOunt();
 
 }
 
