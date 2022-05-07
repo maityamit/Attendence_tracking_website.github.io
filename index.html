@@ -168,8 +168,11 @@ var scanner = new Instascan.Scanner({ video: document.getElementById('preview'),
 
 
 
+
 function FirebaseFUNCTION(txt){
 
+
+          RetriveLoginandLogoutCOunt();
 
 
 
@@ -177,29 +180,57 @@ function FirebaseFUNCTION(txt){
             var indexOfFirst = txt.indexOf(searchTerm);
             indexOfFirst = indexOfFirst+7;
 
-            alert(txt.slice(indexOfFirst, indexOfFirst+11));
+            // alert(txt.slice(indexOfFirst, indexOfFirst+10));
 
 
-        // RetriveLoginandLogoutCOunt();
+            var today = new Date();
+            var yyyy = today.getFullYear();
+            var mm = today.getMonth() + 1; // Months start at 0!
+            var dd = today.getDate();
 
+            if (dd < 10) dd = '0' + dd;
+            if (mm < 10) mm = '0' + mm;
 
-        // var isChecked=document.getElementById("togBtn").checked;
-
-        // if(isChecked){
-
-        //     // IF Login
+            today = yyyy + '-' + mm + '-' + dd;
 
     
-        //     tempContentStoreFunction(txt);
 
-        // }
 
-        // if(!isChecked){
-        //     ExistingDataCheck(txt);
-        //     mainContentStoreFunction(txt,"Logout");
-        //     var audio = new Audio('dot.mp3');
-        //     audio.play();
-        // }
+            var date2 = new Date(txt.slice(indexOfFirst, indexOfFirst+10));
+            var date1 = new Date(today);
+            var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
+
+        
+
+            if(diffDays===0){
+
+
+                var isChecked=document.getElementById("togBtn").checked;
+
+if(isChecked){
+
+    // IF Login
+
+
+    tempContentStoreFunction(txt);
+
+}
+
+if(!isChecked){
+    ExistingDataCheck(txt);
+    mainContentStoreFunction(txt,"Logout");
+    var audio = new Audio('dot.mp3');
+    audio.play();
+}
+
+            }else if(diffDays>0){
+                alert("our qrcode is not yet on scheduled.. please come back on exact date....");
+            }else{
+                alert("your qrcode is expired please again.");
+            }
+           
+
+
 
 
             
