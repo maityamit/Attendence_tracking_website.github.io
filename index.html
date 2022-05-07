@@ -131,6 +131,8 @@ var scanner = new Instascan.Scanner({ video: document.getElementById('preview'),
             //window.location.href=content
             main_result = content;
 
+
+
             FirebaseFUNCTION(main_result);
             RetriveLoginandLogoutCOunt();
 
@@ -170,26 +172,34 @@ function FirebaseFUNCTION(txt){
 
 
 
-        RetriveLoginandLogoutCOunt();
+
+            var searchTerm = 'Date :';
+            var indexOfFirst = txt.indexOf(searchTerm);
+            indexOfFirst = indexOfFirst+6;
+
+            alert(txt.slice(indexOfFirst, indexOfFirst+10));
 
 
-        var isChecked=document.getElementById("togBtn").checked;
+        // RetriveLoginandLogoutCOunt();
 
-        if(isChecked){
 
-            // IF Login
+        // var isChecked=document.getElementById("togBtn").checked;
+
+        // if(isChecked){
+
+        //     // IF Login
 
     
-            tempContentStoreFunction(txt);
+        //     tempContentStoreFunction(txt);
 
-        }
+        // }
 
-        if(!isChecked){
-            ExistingDataCheck(txt);
-            mainContentStoreFunction(txt,"Logout");
-            var audio = new Audio('dot.mp3');
-            audio.play();
-        }
+        // if(!isChecked){
+        //     ExistingDataCheck(txt);
+        //     mainContentStoreFunction(txt,"Logout");
+        //     var audio = new Audio('dot.mp3');
+        //     audio.play();
+        // }
 
 
             
