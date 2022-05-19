@@ -196,10 +196,11 @@ function FirebaseFUNCTION(txt){
     
 
 
-            var date2 = new Date(txt.slice(indexOfFirst, indexOfFirst+10));
+            var date2 = new Date(txt.slice(indexOfFirst, indexOfFirst+11));
             var date1 = new Date(today);
             var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
 
+        
         
 
             if(diffDays===0){
@@ -224,7 +225,7 @@ if(!isChecked){
 }
 
             }else if(diffDays>0){
-                alert("our qrcode is not yet on scheduled.. please come back on exact date....");
+                alert("Please come back on exact date....\nYour date is "+txt.slice(indexOfFirst, indexOfFirst+11));
             }else{
                 alert("your qrcode is expired please again.");
             }
