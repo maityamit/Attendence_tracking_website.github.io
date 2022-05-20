@@ -150,7 +150,7 @@ var _messagesRef3 = firebase.database()
   cell3.innerHTML = result;
   cell4.innerHTML = "<span style='color: red;'><u>Delete</u></span>";
 
-  cell3.onclick = function () {
+  cell4.onclick = function () {
     var _messagesRef = firebase.database()
             .ref('Collected_Data');
             _messagesRef.child(userKey).remove();
